@@ -1,9 +1,6 @@
 import json
 import os
 
-# -------------------------------
-# File handling functions
-# -------------------------------
 DATA_FILE = "moodsongs.json"
 
 def load_data():
@@ -24,9 +21,7 @@ def save_data(data):
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=4)
 
-# -------------------------------
-# Functionalities
-# -------------------------------
+
 def show_all_moods(data):
     print("\n🎶 Available Moods and Songs:")
     for mood, songs in data.items():
@@ -41,7 +36,7 @@ def recommend_songs(data):
         for s in data[mood]:
             print(f" - {s}")
     else:
-        print("❌ Mood not found. Try adding it first!")
+        print(" Mood not found. Try adding it first!")
 
 def add_song(data):
     mood = input("\nEnter mood: ").capitalize()
@@ -53,12 +48,12 @@ def add_song(data):
         data[mood] = [song]
 
     save_data(data)
-    print("✅ Song added successfully!")
+    print(" Song added successfully!")
 
 def update_mood(data):
     mood = input("\nEnter mood to update: ").capitalize()
     if mood not in data:
-        print("❌ Mood not found.")
+        print(" Mood not found.")
         return
     print("Current songs:")
     for s in data[mood]:
@@ -66,11 +61,9 @@ def update_mood(data):
     new_songs = input("Enter new song list (comma-separated): ").split(",")
     data[mood] = [s.strip() for s in new_songs]
     save_data(data)
-    print("✅ Mood updated successfully!")
+    print(" Mood updated successfully!")
 
-# -------------------------------
-# Main Menu
-# -------------------------------
+
 def main():
     data = load_data()
 
@@ -96,7 +89,8 @@ def main():
             print("🎶 Thank you for using MoodSync! Goodbye.")
             break
         else:
-            print("❌ Invalid choice. Try again.")
+            print(" Invalid choice. Try again.")
 
 if __name__ == "__main__":
     main()
+
